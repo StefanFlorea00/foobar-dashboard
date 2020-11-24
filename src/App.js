@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+
+import { _GET } from "./db/Db";
+import QueueTime from "./components/QueueTime";
+
+import "./App.css";
+
+_GET();
 
 function App() {
+  const [data, setData] = useState([]);
+  console.log(data);
+  if (data.queue != null) console.log(data.queue.length);
+
+  useEffect(() => {
+    _GET(setData);
+    setInterval(() => {
+      _GET(setData);
+    }, 10000);
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <QueueTime queue={data.queue ? data.queue.length : "0"}></QueueTime>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
   );
 }
