@@ -11,3 +11,33 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* added by Sylvain for general structure */ 
+
+section {
+  background-color: blue;
+  height: 250px;
+  margin: 5px;
+}
+
+.sidebar {
+  grid-row: 2 / span 6;
+  grid-column: 1;
+  background-color: hotpink;
+}
+
+.header {
+  background-color: green;
+  grid-row: 1;
+  grid-column: 1 / -1;
+}
+
+.header > img {
+    width: 100%;
+}
+
+.footer {
+  background-color: purple;
+  grid-column: 1 / -1;
+  height: 100px;
+}
